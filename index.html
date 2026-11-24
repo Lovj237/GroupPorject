@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f6f7f5" />
+    <meta name="description" content="Lockbox — private, password-based file encryption that happens right in your browser." />
+    <title>Lockbox — File protection, made simple</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="Lockbox home">
+          <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 10V7a5 5 0 0 1 10 0v3M5.5 10h13v10h-13z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 14v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+          <span>lockbox<span class="brand-period">.</span></span>
+        </a>
+        <div class="topbar-note"><span class="online-dot"></span> Private by design</div>
+      </header>
+
+      <main>
+        <section class="intro" aria-labelledby="page-title">
+          <div class="eyebrow"><span class="eyebrow-line"></span> YOUR FILES, YOUR BUSINESS</div>
+          <h1 id="page-title">A little more <span>peace of mind.</span></h1>
+          <p>Lock sensitive files behind a password only you know. No uploads, no accounts, no fuss.</p>
+        </section>
+
+        <section class="workspace" aria-label="File encryption tool">
+          <div class="workspace-heading">
+            <div class="heading-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 10V7a5 5 0 0 1 10 0v3M5.5 10h13v10h-13z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 14v2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+            <div><h2>File protection</h2><p>Secure a file or unlock one you've received.</p></div>
+          </div>
+
+          <div class="mode-switch" role="tablist" aria-label="Choose an action">
+            <button class="mode-tab active" id="encrypt-tab" type="button" role="tab" aria-selected="true" aria-controls="file-form" data-mode="encrypt"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6 8V5.8a4 4 0 0 1 8 0V8M4.5 8h11v8h-11z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Encrypt a file</button>
+            <button class="mode-tab" id="decrypt-tab" type="button" role="tab" aria-selected="false" aria-controls="file-form" data-mode="decrypt"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M14 8V5.8a4 4 0 0 0-8 0V8m-1.5 0h11v8h-11z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Decrypt a file</button>
+          </div>
+
+          <form id="file-form" novalidate>
+            <div class="form-content">
+              <label class="field-label" for="file-input" id="file-label">File to encrypt</label>
+              <div class="drop-zone" id="drop-zone" tabindex="0" role="button" aria-describedby="drop-hint file-error">
+                <input id="file-input" class="visually-hidden" type="file" />
+                <span class="upload-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M5 14.5v4A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5v-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="drop-copy"><strong id="drop-title">Drop a file here</strong><span id="drop-hint">or <span class="browse-link">browse your device</span></span></span>
+                <span class="file-chip" id="file-chip" hidden><span class="file-chip-icon" aria-hidden="true">↗</span><span class="file-chip-name" id="file-name"></span><button class="remove-file" id="remove-file" type="button" aria-label="Remove selected file">×</button></span>
+              </div>
+              <p class="field-error" id="file-error" aria-live="polite"></p>
+
+              <div class="password-heading"><label class="field-label" for="password-input" id="password-label">Create a password</label><span class="password-note">12+ characters recommended</span></div>
+              <div class="password-wrap"><input id="password-input" type="password" autocomplete="new-password" placeholder="Enter a strong password" required /><button class="reveal-button" id="toggle-password" type="button" aria-label="Show password">Show</button></div>
+              <p class="field-error" id="password-error" aria-live="polite"></p>
+
+              <div class="password-wrap confirm-wrap" id="confirm-wrap"><input id="confirm-input" type="password" autocomplete="new-password" placeholder="Re-enter your password" /><button class="reveal-button" id="toggle-confirm" type="button" aria-label="Show password confirmation">Show</button></div>
+              <p class="field-error" id="confirm-error" aria-live="polite"></p>
+
+              <button class="submit-button" id="submit-button" type="submit"><span id="submit-label">Encrypt file</span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <div class="status-message" id="status-message" role="status" aria-live="polite" hidden></div>
+            </div>
+          </form>
+
+          <div class="security-note"><span class="security-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M10 2.5 4 5v4.3c0 3.8 2.6 6.8 6 8.2 3.4-1.4 6-4.4 6-8.2V5z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="m7.5 10 1.7 1.7 3.5-3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><strong>Private by design</strong><br />Your file never leaves this device. Encryption happens in your browser.</span></div>
+        </section>
+
+        <section class="trust-row" aria-label="Security details">
+          <div><span class="trust-check">✓</span> AES-256-GCM encryption</div><span class="trust-divider" aria-hidden="true"></span>
+          <div><span class="trust-check">✓</span> No uploads or tracking</div><span class="trust-divider" aria-hidden="true"></span>
+          <div><span class="trust-check">✓</span> Open your files anywhere</div>
+        </section>
+      </main>
+      <footer><span>© 2026 Lockbox</span><span>Made for keeping things yours.</span></footer>
+    </div>
+  </body>
+</html>
